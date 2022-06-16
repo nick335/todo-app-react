@@ -1,0 +1,17 @@
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+@mixin flexSpaceBetween{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin width{
+  width: 450px;
+}
+
+$media-mobile-sm: "only screen and (max-width : 480px)";

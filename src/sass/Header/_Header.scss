@@ -1,0 +1,73 @@
+@import '../abstracts/mixins';
+
+.header{
+  height: 370px;
+  width: 100%;
+  @include flexCenter;
+
+  &-bg-dark{
+    background: url(../../images/bg-desktop-dark.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  &-bg-light{
+    background: url(../../images/bg-desktop-light.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &-info-div{
+    @include flexSpaceBetween;
+    @include width;
+    margin-bottom: 3rem;
+    margin-top: 7rem;
+  }
+
+  &-title{
+    text-transform: uppercase;
+    color: hsl(0, 0%, 100%);
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 12px;
+  }
+
+  &-icon{
+    cursor: pointer;
+  }
+}
+.input{
+  @include width;
+  padding: 20px 0px 20px 45px;
+  border-radius: 5px;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  line-height: 12px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+.input-bg-dark{
+  background-color:hsl(235, 24%, 19%);
+  color: hsl(234, 39%, 85%);
+}
+.input-bg-light{
+  background-color: hsl(0, 0%, 98%);
+  color: hsl(236, 9%, 61%)
+}
+.input-div{
+  position: relative;
+}
+
+.circle{
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  border: 0.8px solid hsl(234, 11%, 52%);
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translate(50%, -55%);
+  z-index: 10000;
+  
+}

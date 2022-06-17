@@ -3,4 +3,6 @@
 @import  './abstracts/fonts.scss' ;
 @import './abstracts/mixins';
 @import './Header/Header';
+@import './Header/HeaderMediaQuery';
 @import './Main/main';
+@import './Main/mainMediaQuery'

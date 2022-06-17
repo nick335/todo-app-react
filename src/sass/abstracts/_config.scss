@@ -13,3 +13,6 @@ body{
   font-family: 'Josefin Sans', sans-serif;
   // overflow: hidden;
 }
+
+$media-mobile: "only screen and (max-width : 600px)";
+$media-mobile-sm: "only screen and (max-width : 414px)";

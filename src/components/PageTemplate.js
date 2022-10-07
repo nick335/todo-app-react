@@ -13,6 +13,19 @@ export default function PageTemplate(){
   const [inputValue, setInputValue] = React.useState('')
   const [activeCount, setActiveCount] = React.useState(0)
 
+
+   // Function to update list on drop
+   const handleDrop = (droppedItem) => {
+    // Ignore drop outside droppable container
+    if (!droppedItem.destination) return;
+    var updatedList = [...todoArr];
+    // Remove dragged item
+    const [reorderedItem] = updatedList.splice(droppedItem.source.index, 1);
+    // Add dropped item
+    updatedList.splice(droppedItem.destination.index, 0, reorderedItem);
+    // Update State
+    setTodoArr(updatedList);
+  };
  
 
   React.useEffect(() => {
@@ -91,7 +104,6 @@ function onChange(event){
     setTodoArr(newState)
   }
 
-  console.log(todoArr)
   return(
     <div className="container">
       <Header 
@@ -108,6 +120,7 @@ function onChange(event){
         delete= {deleteTodo}
         clearCompleted= {clearCompleted}
         count = {activeCount}
+        handle = {handleDrop}
       />
        
     </div>

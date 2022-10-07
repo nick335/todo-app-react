@@ -23,7 +23,7 @@
 
     &-bg-dark{
       background-color: hsl(235, 24%, 19%);
-       box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px
+       box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     }
     &-bg-light{
       background-color:hsl(0, 0%, 100%);
@@ -37,20 +37,21 @@
   height: 58px;
   border-bottom: 0.1px solid hsl(234, 11%, 52%);
   cursor: pointer;
-
-  &:hover{
-    .delete{
-      display: block;
-    }
-  }
-
+  
   &-dark{
+    background-color: hsl(235, 24%, 19%);
     border-bottom: 0.1px solid hsl(234, 11%, 52%);
   }
   &-light{
+    background-color:hsl(0, 0%, 100%);
     border-bottom: 0.1px solid hsl(236, 33%, 92%);
-    
-  }
+  } 
+  &:hover{
+        .delete{
+          display: block;
+        }
+      }
+
 }
 .circle2{
   width: 20px;
@@ -74,7 +75,7 @@
   height: 5px;
   border-left: 2.3px solid white;
   border-bottom: 2.5px solid white;
-  transform: rotate(-39deg);
+  transform: rotate(-35deg);
 
   &-iscompleted{
     display: block;
@@ -84,8 +85,8 @@
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 500;
   font-size: 0.9rem;
-  text-align: center;
   margin-left: 15px;
+  max-width: 100%;
 
   &-dark{
     color: hsl(234, 39%, 85%);
@@ -97,6 +98,7 @@
   &-iscompleted-dark{
     color: hsl(233, 14%, 35%);
     text-decoration: line-through;
+    text-decoration-thickness: 3px;
   }
   &-iscompleted-light{
     color: hsl(233, 11%, 84%);
@@ -130,17 +132,23 @@
 
     &-dark{
       color: hsl(234, 11%, 52%);
-  
-      &:hover{
-        color: hsl(236, 33%, 92%);
+      
+      @media(hover: hover){
+        &:hover{
+          color: hsl(236, 33%, 92%);
+        }
       }
+      
     }
     &-light{
       color: hsl(236, 9%, 61%);
 
-      &:hover{
-        color: hsl(235, 19%, 35%);
+      @media(hover: hover){
+        &:hover{
+          color: hsl(235, 19%, 35%);
+        }
       }
+      
     }
     &-is-active{
       color:  hsl(220, 98%, 61%);
@@ -155,21 +163,43 @@
   cursor: pointer;
 
   &-dark{
+
     color: hsl(233, 14%, 35%);
 
-    &:hover{
-      color: hsl(234, 11%, 52%);
+    @media(hover: hover){
+      &:hover{
+        color: hsl(234, 11%, 52%);
+      }   
     }
+    
   }
   &-light{
     font-weight: 400;
     font-size: 11px;
     color: hsl(233, 11%, 84%);
 
-    &:hover{
-      color:  hsl(236, 9%, 61%);
+    @media(hover: hover){
+      &:hover{
+        color:  hsl(236, 9%, 61%);
+      }  
     }
+    
 
   }
 }
-// style for active section
+.outside-div{
+  margin-top: 3rem;
+
+  .outside-text{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.6rem;
+
+    &-dark{
+      color: hsl(233, 14%, 35%);
+    }
+    &-light{
+      color: hsl(233, 11%, 84%);
+    }
+  }
+}

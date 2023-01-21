@@ -1,0 +1,119 @@
+@import '../abstracts/config';
+@import '../abstracts/mixins';
+
+.signup{
+  // @include width;
+  max-width: 370px;
+  margin: 0 auto;
+  margin-top: -13rem;
+  padding: 2rem;
+  font-family: sans-serif;
+  border-radius: 5px;
+  background-color: hsl(235, 24%, 19%);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  color: hsl(234, 39%, 85%);
+
+  &-dark-theme{
+    transition: all 0.5s ease-in;
+    background-color: hsl(235, 24%, 19%);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    color: hsl(234, 39%, 85%);
+  }
+  &-light-theme{
+    transition: all 0.5s ease-in;
+    background-color:hsl(0, 0%, 100%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: hsl(235, 19%, 35%);
+  }
+
+  &_container{
+    h3{
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 16.5px;
+    }
+
+    form{
+      margin-top: 1rem;
+      // background-color: red;
+
+      .form-div{
+        // display: flex;
+        // flex-direction: column;
+        position: relative;
+        
+
+        input{
+          // display: none;
+          width: 100%;
+          padding: 10px 0;
+          font-size: 16px;
+          color: #fff;
+          margin-bottom: 30px;
+          border: none;
+          border-bottom: 1px solid #fff;
+          outline: none;
+          background: transparent;
+
+        }
+        label{
+          position: absolute;
+          top:0;
+          left: 0;
+          padding: 10px 0;
+          font-size: 16px;
+          // color: #fff;
+          pointer-events: none;
+          transition: .5s;
+        }
+        
+      }
+      .form-div input:focus ~ label,
+      .form-div input:valid ~ label {
+        top: -20px;
+        left: 0;
+        color: #03e9f4;
+        font-size: 12px;
+      }
+      .form-btn{
+        display: flex;
+        // align-items: center;
+        background-color:#03e9f4;
+        outline: none;
+        border: none;
+        color: white;
+        padding: 9px 30px;
+        font-size: 15px;
+        margin: 0 auto;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
+    .form-extras{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      // color: #fff;
+
+      p{
+        font-size: 14px;
+        padding-top: 2px;
+      }
+       h3{
+        padding: 5px 0;
+        font-size: 15px;
+       }
+       button{
+        background-color: #DB4437;
+        padding: 10px 40px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        font-size: 15px;
+        color: white;
+        cursor: pointer;
+       }
+    }
+    
+  }
+}

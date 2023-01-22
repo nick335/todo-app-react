@@ -1,7 +1,8 @@
 import React from 'react'
 import moon from '../images/icon-moon.svg'
 import sun from '../images/icon-sun.svg'
-import SignUp from './SignUp'
+// import SignUp from './SignUp'
+import { Outlet } from 'react-router-dom'
 
 export default function AuthenticationLayout(props) {
   let authsectionClassname= props.theme === "dark" ? 'authsection authsection-bg-dark' : 'authsection authsection-bg-light'
@@ -15,9 +16,7 @@ export default function AuthenticationLayout(props) {
         </header>
       </div>
       <div className='authsection_routes'>
-        <SignUp 
-          theme = {props.theme}
-        />
+        <Outlet />
       </div>
     </section>
   )

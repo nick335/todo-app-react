@@ -43,17 +43,26 @@
         position: relative;
         
 
-        input{
+        .input{
           // display: none;
           width: 100%;
           padding: 10px 0;
           font-size: 16px;
-          color: #fff;
-          margin-bottom: 30px;
-          border: none;
-          border-bottom: 1px solid #fff;
+          margin-bottom: 30px;   
           outline: none;
           background: transparent;
+          border-radius: 0;
+
+          &-dark-theme{
+            border: none;
+            border-bottom: 1px solid #fff;
+            color: #fff;
+          }
+          &-light-theme{
+            border: none;
+            border-bottom: 1px solid #333;
+            color: #333;
+          }
 
         }
         label{

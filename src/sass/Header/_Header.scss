@@ -16,6 +16,30 @@
     background-size: cover;
   }
 
+  .top-info{
+    position: absolute;
+    top: 20px;
+    right: 32px;
+    color: hsl(0, 0%, 100%);
+    display: flex;
+    gap: 1.5rem;
+
+    .logout{
+      cursor: pointer;
+
+      &:hover{
+        color: red;
+      }
+    }
+
+    p{
+      font-size: 16px;
+      span{
+        font-style: italic;
+      }
+    }
+  }
+
   &-info-div{
     @include flexSpaceBetween;
     @include width;

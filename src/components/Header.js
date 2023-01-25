@@ -10,6 +10,11 @@ export default function Header(props){
 
   return(
     <header className={headerClassname}>
+      <div className="top-info">
+        <p>Email: {props.user && <span>{props.user}</span>}</p>
+        <p className="logout" onClick={props.logout}>Logout</p>
+        {props.error && <p>{props.error}</p>}
+      </div>
       <div className="header-info-div">
         <h1 className="header-title">Todo</h1>
         <img alt="sun" src={props.theme === 'dark' ? sun : moon } className='header-icon' onClick={props.onclick}/>

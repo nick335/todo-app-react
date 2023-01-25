@@ -2,11 +2,13 @@ import React from "react";
 import Header from "./Header"
 import Main from "./Main";
 import { nanoid } from "nanoid";
+import { collection, onSnapshot, query,  where } from "firebase/firestore";
+import { db } from "./firebase";
 
 
-export default function Home(){
-
-  const [theme, setTheme]= React.useState('dark')
+export default function Home(props){
+  const userid = props.id ? props.id : null
+  const [Arr, setArr] = React.useState([])
   const [todoArr, setTodoArr] = React.useState(
     JSON.parse(localStorage.getItem('todoData')) || []
   )
@@ -39,10 +41,27 @@ export default function Home(){
     setActiveCount(count)
   }, [todoArr])
 
-  function toggleTheme(){
-    setTheme( prev => prev === 'dark' ? 'light' : 'dark')
-  }
+  React.useEffect(() => {
+    const collectionRef = collection(db, 'users')
+    const q = query(
+      collectionRef,
+      where("userid", "==", userid)
+    )
+    const unsubscribe = onSnapshot(q, (docs) => {
+      let arr = []
+      docs.forEach((doc) => {
+        arr.push(doc.data());
+      });
+      // console.log(arr)      
+      setArr(arr)
+    })
+    return () => {
+      unsubscribe();
+    };
+  }, [userid])
 
+console.log(Arr)
+console.log(userid)
   function complete(id){
     const newState = todoArr.map( each => {
       if(each.id === id){
@@ -107,14 +126,17 @@ function onChange(event){
   return(
     <div className="container">
       <Header 
-        theme ={theme}
-        onclick={toggleTheme}
+        theme ={props.theme}
+        logout = {props.logout}
+        error = {props.error}
+        user={props.user}
+        onclick={props.toggleTheme}
         onkeypress={saveTodo}
         value = {inputValue}
         onchange = {onChange}
       />
       <Main 
-        theme ={theme}
+        theme ={props.theme}
         todoData = {todoArr}
         complete = {complete}
         delete= {deleteTodo}

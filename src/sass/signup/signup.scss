@@ -2,7 +2,6 @@
 @import '../abstracts/mixins';
 
 .signup{
-  // @include width;
   max-width: 370px;
   margin: 0 auto;
   margin-top: -13rem;
@@ -40,16 +39,12 @@
 
     form{
       margin-top: 1.5rem;
-      // background-color: red;
 
       .form-div{
-        // display: flex;
-        // flex-direction: column;
         position: relative;
         
 
         .input{
-          // display: none;
           width: 100%;
           padding: 10px 0;
           font-size: 16px;
@@ -91,7 +86,6 @@
       }
       .form-btn{
         display: flex;
-        // align-items: center;
         background-color:#03e9f4;
         outline: none;
         border: none;
@@ -107,7 +101,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      // color: #fff;
 
       p{
         font-size: 14px;

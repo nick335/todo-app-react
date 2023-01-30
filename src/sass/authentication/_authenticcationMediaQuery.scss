@@ -1,0 +1,18 @@
+@import '../abstracts/config';
+@import '../abstracts/mixins';
+
+
+@media #{$media-mobile}{
+  .authsection{
+    // display: none;/
+
+    &_container{
+      &_header{
+        // @include mobile-width;
+        max-width: 90vw;
+        // display: none;
+      }
+    }
+  }
+
+}

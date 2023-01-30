@@ -2,6 +2,7 @@ import React from "react";
 import Box from "./Box";
 import { nanoid } from "nanoid";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { InfinitySpin  } from 'react-loader-spinner'
 export default function Main(props){
   const mainClassname = props.theme === 'dark' ? 'main-bg-dark' : 'main-bg-light'
   const mainContainerClassname = props.theme === 'dark' ? 'main-container-bg-dark' : 'main-container-bg-light'
@@ -10,6 +11,7 @@ export default function Main(props){
   const footerBg = props.theme === 'dark' ? 'footer-classes-dark' : 'footer-classes-light'
   const outsideText = props.theme === 'dark' ? 'outside-text-dark' : 'outside-text-light'
   const [pageState, setPageState] = React.useState('All')
+
  
 
   function setAll(){
@@ -106,7 +108,7 @@ export default function Main(props){
   return(
     <main className={`main ${mainClassname}`}>
       <div className={`main-container ${mainContainerClassname}`}>
-        <DragDropContext onDragEnd={props.handle}>
+       <DragDropContext onDragEnd={props.handle}>
           <Droppable droppableId="list-container">
             {(provided) => (
               <div
@@ -114,7 +116,14 @@ export default function Main(props){
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
-               { 
+               {                                                                props.loading ? 
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  paddingLeft: '0px',
+                  paddingRight:0,
+                }}><InfinitySpin  width="100" color="#4fa94d" /></div> :
                   pageState === 'All' ? allElements :
                   pageState === 'Active' ? activeElements :
                   pageState === 'Completed' ? completedElements : 
@@ -124,7 +133,7 @@ export default function Main(props){
               </div>
             )}
           </Droppable>
-        </DragDropContext>
+        </DragDropContext> 
         
         <div className="main-footer"> 
           <h3 className={`footer-text ${footerTitleClassname}`}>{`${props.count} items left`}</h3>

@@ -2,8 +2,6 @@ import React from "react";
 import moon from '../images/icon-moon.svg'
 import sun from '../images/icon-sun.svg'
 
-
-
 export default function Header(props){
   let headerClassname= props.theme === "dark" ? 'header header-bg-dark' : 'header header-bg-light'
   let inputClassname = props.theme === "dark" ? 'input-bg-dark' : 'input-bg-light'

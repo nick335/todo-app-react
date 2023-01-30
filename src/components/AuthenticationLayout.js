@@ -1,7 +1,6 @@
 import React from 'react'
 import moon from '../images/icon-moon.svg'
 import sun from '../images/icon-sun.svg'
-// import SignUp from './SignUp'
 import { Outlet } from 'react-router-dom'
 
 export default function AuthenticationLayout(props) {

@@ -2,18 +2,16 @@ import React from "react";
 import Header from "./Header"
 import Main from "./Main";
 import { nanoid } from "nanoid";
-import { collection, onSnapshot, query,  where } from "firebase/firestore";
+import { arrayUnion, collection, doc, onSnapshot, query,  updateDoc,  where } from "firebase/firestore";
 import { db } from "./firebase";
 
 
 export default function Home(props){
   const userid = props.id ? props.id : null
-  const [Arr, setArr] = React.useState([])
-  const [todoArr, setTodoArr] = React.useState(
-    JSON.parse(localStorage.getItem('todoData')) || []
-  )
+  const [todoArr, setTodoArr] = React.useState([])
   const [inputValue, setInputValue] = React.useState('')
   const [activeCount, setActiveCount] = React.useState(0)
+  const [loading, setloading] = React.useState(true)
 
 
    // Function to update list on drop
@@ -25,21 +23,14 @@ export default function Home(props){
     const [reorderedItem] = updatedList.splice(droppedItem.source.index, 1);
     // Add dropped item
     updatedList.splice(droppedItem.destination.index, 0, reorderedItem);
-    // Update State
-    setTodoArr(updatedList);
+//  updating firestore database    
+    const docRef = doc(db, "users", userid)
+    updateDoc(docRef, {
+      todos: updatedList
+    }).catch((error) => {
+      console.log(error.message)
+    })
   };
- 
-
-  React.useEffect(() => {
-    localStorage.setItem('todoData', JSON.stringify(todoArr))
-    let count = 0
-    for (let i = 0; i < todoArr.length; i++) {
-      if(todoArr[i].isCompleted === false){
-        ++count
-      }
-    }
-    setActiveCount(count)
-  }, [todoArr])
 
   React.useEffect(() => {
     const collectionRef = collection(db, 'users')
@@ -52,35 +43,40 @@ export default function Home(props){
       docs.forEach((doc) => {
         arr.push(doc.data());
       });
-      // console.log(arr)      
-      setArr(arr)
+      const todos = arr[0].todos
+      setTodoArr(todos)
+      setloading(false)
+      let count = 0
+      for (let i = 0; i < todos.length; i++) {
+      if(todos[i].isCompleted === false){
+        ++count
+      }
+    }
+    setActiveCount(count)
     })
     return () => {
       unsubscribe();
     };
   }, [userid])
 
-console.log(Arr)
-console.log(userid)
+// complete todos function
   function complete(id){
     const newState = todoArr.map( each => {
       if(each.id === id){
-        if(each.isCompleted){
         return{
           ...each,
-          isCompleted:false
-        }}else{
-          return{
-            ...each,
-            isCompleted:true
-          }
+          isCompleted: !each.isCompleted
         }
       }else{
         return each
       }
     })
-
-    setTodoArr(newState)
+    const docRef = doc(db, "users", userid)
+    updateDoc(docRef, {
+      todos: newState
+    }).catch((error) => {
+      console.log(error.message)
+    })
   }
 
 function onChange(event){
@@ -90,37 +86,51 @@ function onChange(event){
   function saveTodo(event){
     if(event.key === 'Enter'){
       if(inputValue !== ''){
-        const newArr = [...todoArr]
-      newArr.push(
-        {
+        const docsRef = doc(db, "users", userid)
+        const object ={
           id:nanoid(),
           todoTitle:inputValue,
           isCompleted:false
         }
-      )
+//    updating firestore document
+      updateDoc(docsRef, {
+        todos: arrayUnion(object)
+      }).then(() =>{
 
-      setTodoArr(newArr)
+      }).catch((error) =>{
+        console.log(error)
+      })
       setInputValue('')
       }
       
           
     }
   }
-
+// delete todos
   function deleteTodo(id){
     const newState = todoArr.filter(each => {
         return each.id !== id
     })
-
-    setTodoArr(newState)
+// updating firestore database    
+    const docRef = doc(db, "users", userid)
+    updateDoc(docRef, {
+      todos: newState
+    }).catch((error) => {
+      console.log(error.message)
+    })
   }
-
+// clear completed todos function
   function clearCompleted(){
     const newState =todoArr.filter( each => {
       return each.isCompleted === false
     })
-
-    setTodoArr(newState)
+//  uodating firestore database    
+    const docRef = doc(db, "users", userid)
+    updateDoc(docRef, {
+      todos: newState
+    }).catch((error) => {
+      console.log(error.message)
+    })
   }
 
   return(
@@ -143,6 +153,7 @@ function onChange(event){
         clearCompleted= {clearCompleted}
         count = {activeCount}
         handle = {handleDrop}
+        loading = {loading}
       />
        
     </div>

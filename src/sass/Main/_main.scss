@@ -9,9 +9,11 @@
   
   &-bg-dark{
     background-color: hsl(240, 20%, 12%);
+    transition: all 0.5s ease-in;
   }
   &-bg-light{
     background-color: hsl(0, 0%, 98%);
+    transition: all 0.5s ease-in;
   }
 
   &-container{
@@ -24,10 +26,12 @@
     &-bg-dark{
       background-color: hsl(235, 24%, 19%);
        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+       transition: all 0.5s ease-in;
     }
     &-bg-light{
       background-color:hsl(0, 0%, 100%);
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      transition: all 0.5s ease-in;
     }
   }
 }
@@ -35,14 +39,16 @@
   display: flex;
   align-items: center;
   height: 58px;
-  border-bottom: 0.1px solid hsl(234, 11%, 52%);
   cursor: pointer;
+  transition: all 0.5s ease-in;
   
   &-dark{
+    transition: all 0.5s ease-in;
     background-color: hsl(235, 24%, 19%);
     border-bottom: 0.1px solid hsl(234, 11%, 52%);
   }
   &-light{
+    transition: all 0.5s ease-in;
     background-color:hsl(0, 0%, 100%);
     border-bottom: 0.1px solid hsl(236, 33%, 92%);
   } 
@@ -90,19 +96,23 @@
 
   &-dark{
     color: hsl(234, 39%, 85%);
+    transition: all 0.5s ease-in;
   }
 
   &-light{
     color: hsl(235, 19%, 35%);
+    transition: all 0.5s ease-in;
   }
   &-iscompleted-dark{
     color: hsl(233, 14%, 35%);
     text-decoration: line-through;
     text-decoration-thickness: 3px;
+    transition: all 0.5s ease-in;
   }
   &-iscompleted-light{
     color: hsl(233, 11%, 84%);
     text-decoration: line-through;
+    transition: all 0.5s ease-in;
   }
 }
 
@@ -132,6 +142,7 @@
 
     &-dark{
       color: hsl(234, 11%, 52%);
+      transition: all 0.5s ease-in;
       
       @media(hover: hover){
         &:hover{
@@ -142,6 +153,7 @@
     }
     &-light{
       color: hsl(236, 9%, 61%);
+      transition: all 0.5s ease-in;
 
       @media(hover: hover){
         &:hover{
@@ -165,6 +177,7 @@
   &-dark{
 
     color: hsl(233, 14%, 35%);
+    transition: all 0.5s ease-in;
 
     @media(hover: hover){
       &:hover{
@@ -177,6 +190,7 @@
     font-weight: 400;
     font-size: 11px;
     color: hsl(233, 11%, 84%);
+    transition: all 0.5s ease-in;
 
     @media(hover: hover){
       &:hover{
@@ -197,9 +211,11 @@
 
     &-dark{
       color: hsl(233, 14%, 35%);
+      transition: all 0.5s ease-in;
     }
     &-light{
       color: hsl(233, 11%, 84%);
+      transition: all 0.5s ease-in;
     }
   }
 }

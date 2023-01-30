@@ -9,7 +9,7 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 import validator from 'validator'
 import PrivateRoute from './PrivateRoute'
 import { useNavigate } from 'react-router-dom'
-import {  collection, doc,  getDocs,  query,  setDoc, where } from 'firebase/firestore'
+import {   doc,  getDoc,  setDoc } from 'firebase/firestore'
 export default function PageTemplate() {
   const navigate = useNavigate()
   const [theme, setTheme]= React.useState('dark')
@@ -18,12 +18,6 @@ export default function PageTemplate() {
   const [loginError, setLoginError]=React.useState('')
   const [loginLoading, setLoginLoading]=React.useState(false)
   const [logoutError, setLogoutError]=React.useState('')
-  // const [todoArr, setTodoArr] = React.useState(
-  //   {
-  //    todos: [],
-  //    userid: "efegwgrg"
-  //   }
-  // )
 
   const [user, setUser] = React.useState({
     email: '',
@@ -59,13 +53,10 @@ export default function PageTemplate() {
         todos: [],
         userid: id
       }
-      // db.collection('users').doc(user.user.uid).set(todoArr)
-      setDoc(doc(db, "users", id), layout).then(() =>{
-        
-      }).catch((error) =>{
-        console.log(error)
+      setDoc(doc(db, "users", id), layout).catch((error) =>{
+        setRegisterError(error.message)
       }) 
-      navigate("/")
+      // navigate("/")
     }).catch((error) => {
       setRegisterError(error.message)
     })
@@ -81,9 +72,7 @@ export default function PageTemplate() {
 
     setLoginError('')
     setLoginLoading(true)
-    signInWithEmailAndPassword(auth, email, password).then(() =>{
-      navigate("/")
-    }).catch((error) => {
+    signInWithEmailAndPassword(auth, email, password).catch((error) => {
       setLoginError(error.message)
     })
     setLoginLoading(false)
@@ -102,14 +91,15 @@ export default function PageTemplate() {
         todos: [],
         userid: id
       }
-      // const docRef = doc(db, "users", id);
-      const q = query(collection(db, "users"), where("userid", "==",  id))
-      getDocs(q).then((response) => {
-        console.log(response)
-        if(!response.exists) {
-          setDoc(doc(db, "users", id), layout)
-        } 
+      const docRef = doc(db, "users", id);
+      getDoc(docRef).then((responnse) => {  
+        if(!responnse.exists()){
+          setDoc(docRef, layout).catch((error) => {
+            setLoginError(error.message)
+          })
+        }
       })
+  
       navigate('/')
     }).catch((error) => {
       setLoginError(error.message)
@@ -139,15 +129,10 @@ export default function PageTemplate() {
           email: User.auth.currentUser.email,
           id: User.uid
         }))
-        // setTodoArr(prevstate => ({
-        //   ...prevstate,
-        //   userid:User.uid
-        // }))
-      }else{
-
+        navigate("/")      
       }
     })
-  }, [])
+  }, [navigate])
   return (
     <Routes >
       <Route path='/authentication' 
